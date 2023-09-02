@@ -9,19 +9,21 @@ const openai = new OpenAI({
 
 async function generateStationNames(req, res) {
   try {
-    const { userSubject } = req.body;
+    const { userTheme } = req.body;
 
-    if (!userSubject) {
-      return res.status(400).json({ error: 'User subject is missing in the request body.' });
+    if (!userTheme) {
+      return res
+        .status(400)
+        .json({ error: 'User subject is missing in the request body.' });
     }
 
     const response = await openai.chat.completions.create({
-      model: "gpt-3.5-turbo",
+      model: 'gpt-3.5-turbo',
       messages: [
         {
-          "role": "user",
-          "content": `Come up with 10 simple London Underground station names based on the subject, ${userSubject}`
-        }
+          role: 'user',
+          content: `Give 10 simple London Underground station names based on the subject, ${userTheme} as an array of strings.`,
+        },
       ],
       temperature: 1,
       max_tokens: 256,
@@ -34,7 +36,9 @@ async function generateStationNames(req, res) {
     const generatedStationNames = response.choices[0].message.content;
     return res.status(200).json({ generatedStationNames });
   } catch (error) {
-    return res.status(500).json({ error: 'An error occurred while generating station names.' });
+    return res
+      .status(500)
+      .json({ error: 'An error occurred while generating station names.' });
   }
 }
 
