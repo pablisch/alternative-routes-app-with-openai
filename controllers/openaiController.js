@@ -1,5 +1,4 @@
 require('dotenv').config();
-// openaiController.js
 
 const OpenAI = require('openai');
 
@@ -9,7 +8,9 @@ const openai = new OpenAI({
 
 async function generateStationNames(req, res) {
   try {
+    console.log('req.body is', req.body)
     const { userTheme } = req.body;
+    const { quantity } = req.body;
 
     if (!userTheme) {
       return res
@@ -17,12 +18,18 @@ async function generateStationNames(req, res) {
         .json({ error: 'User subject is missing in the request body.' });
     }
 
+    if (!quantity) {
+      return res
+        .status(400)
+        .json({ error: 'User quantity is missing in the request body.' });
+    }
+
     const response = await openai.chat.completions.create({
       model: 'gpt-3.5-turbo',
       messages: [
         {
           role: 'user',
-          content: `Give 10 simple London Underground station names based on the subject, ${userTheme} as an array of strings.`,
+          content: `Generate an array of ${quantity} strings that are fictional London Underground station names based on the subject, ${userTheme}. The output MUST be only an array of strings.`,
         },
       ],
       temperature: 1,
