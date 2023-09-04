@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Poppins:wght@400;700&display=swap');
 
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   background: #eaeaea;
 }
 
@@ -31,7 +37,7 @@ nav {
 }
 
 .nav-brand h1 {
-  font-family: "Hammersmith One";
+  font-family: 'Hammersmith One';
   font-size: 2.5rem;
   font-weight: 700;
   color: #333;
@@ -61,19 +67,73 @@ nav {
   font-weight: 700;
 }
 
-.form-section h2 {
-  font-size: 1.6rem;
+#forms-and-lists {
+  align-items: stretch;
+  justify-content: stretch;
+}
+
+.main-section h2 {
+  font-size: 1.39rem;
+  font-weight: 400;
   color: #555555;
   padding: 20px 0;
 }
 
-form{
-  background: #4d4d4d;
+.main-section h3 {
+  text-align: center;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #555555;
+  padding: 10px 0;
+}
+
+.form-section {
+  flex: 1;
+  background-color: #4d4d4d;
+}
+
+.main-section .track-form {
   color: #fff;
   text-align: left;
   padding: 20px;
   margin-bottom: 0;
 }
+
+.original-stations-panel,
+.new-stations-panel {
+  flex: 1;
+  background: #fff;
+  color: #333;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 0;
+}
+
+.new-stations-panel {
+  background-color: #ddd;
+  height: inherit;
+}
+
+form button {
+  margin-top: 15px;
+}
+
+form label {
+  font-family: 'Hammersmith One';
+  font-size: 1.3rem;
+}
+
+.main-section .not-in-service {
+  color: #8e2e2e;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.list p {
+  padding: 0;
+  margin: 0 0 0 20px;
+}
+
 /* form * {
   display: block;
   margin: 10px auto;
