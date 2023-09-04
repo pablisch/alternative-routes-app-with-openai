@@ -29,7 +29,7 @@ async function generateStationNames(req, res) {
       messages: [
         {
           role: 'user',
-          content: `Generate an array of ${quantity} strings that are fictional London Underground station names based on the subject, ${userTheme}. The output MUST be only an array of strings.`,
+          content: `Generate an array of ${quantity} strings that are fictional London Underground station names based on the subject, ${userTheme}. The output MUST be only an array of strings. Station names should never include the word "station". Station names should not reference existing underground station names.`,
         },
       ],
       temperature: 1,

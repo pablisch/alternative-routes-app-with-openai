@@ -94,15 +94,20 @@ nav {
   text-align: center;
   font-size: 1.4rem;
   font-weight: 400;
-  color: #fff;
   padding: 10px 0;
+  opacity: 0.5;
 }
 
 .panel {
   flex: 1;
   background-color: #4d4d4d;
   border-radius: 20px;
-  border: 5px solid #070733;
+  border: 1px solid #ccc;
+  outline: 4px solid #070733;
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 0;
 }
 
 .main-section .track-form {
@@ -112,12 +117,12 @@ nav {
   margin-bottom: 0;
 }
 
-.original-stations-panel,
+.original-stations-panel {
+  color: #fffcc5;
+}
+
 .new-stations-panel {
-  flex: 1;
-  text-align: center;
-  padding: 10px;
-  margin-bottom: 0;
+  color: #4eeffe;
 }
 
 form button {
@@ -201,4 +206,11 @@ button:hover {
 button:active {
   border-bottom-width: 2px;
   top: 3px;
+}
+
+form span {
+  font-family: "Poppins";
+  font-size: 1rem;
+  font-weight: 400;
+  color: #8aeaff;
 }

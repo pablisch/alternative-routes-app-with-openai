@@ -441,6 +441,20 @@ const allStations = {
   waterlooCity
 }
 
+const customStations = {
+  bakerlooCustom: [],
+  centralCustom: [],
+  circleCustom: [],
+  districtCustom: [],
+  hammersmithCityCustom: [],
+  jubileeCustom: [],
+  metropolitanCustom: [],
+  northernCustom: [],
+  piccadillyCustom: [],
+  victoriaCustom: [],
+  waterlooCityCustom: []
+};
+
 // get the radio buttons
 const radioButtons = document.querySelectorAll('input[type=radio]');
 // get the form
@@ -481,6 +495,27 @@ const renderOriginalList = (lineSelection, stations) => {
       p.textContent = station;
       originalListDiv.appendChild(p);
     });
+
+    // dispose of any custom names in new name panel
+    if (newListDiv.hasChildNodes()) {
+      while (newListDiv.firstChild) {
+        newListDiv.removeChild(newListDiv.firstChild);
+      }
+    }
+
+    if (customStations[`${selectedValue}Custom`].length > 0) {
+      newListHeading.classList.remove('not-in-service');
+      newListHeading.textContent = `${lineSelection} custom station names`;
+      customStations[`${selectedValue}Custom`].forEach(station => {
+        const p = document.createElement('p');
+        p.textContent = station;
+        newListDiv.appendChild(p);
+      });
+    } else {
+      newListHeading.classList.add('not-in-service');
+      newListHeading.textContent = 'Train replacement not currently in service for this line';
+    }
+
   }
 }
 
@@ -505,6 +540,15 @@ const renderNewList = (lineSelection, stations) => {
       p.textContent = station;
       newListDiv.appendChild(p);
     });
+
+    customStations[`${selectedValue}Custom`] = stations;
+    console.log('customStations is', customStations)
+
+    // get span element in the selected line's label
+    const span = document.querySelector(`label[for=${selectedValue}] span`);
+    // set the text content of the span element to the userTheme
+    span.textContent = ` (${trackForm.userTheme.value})`;
+
   }
 }
 
