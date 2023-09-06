@@ -1,5 +1,5 @@
-import { allLinesArrays, customStationsArrays } from "../src/stations.js";
-import { emptyOriginalListDiv, emptyNewListDiv, removeOriginalClasses, removeNewClasses, AddOriginalNotInServiceClass, AddNewNotInServiceClass } from "../src/helpers.js";
+import { allLinesArrays, customStationsArrays } from "./stations.js";
+import { emptyOriginalListDiv, emptyNewListDiv, removeOriginalClasses, removeNewClasses, AddOriginalNotInServiceClass, AddNewNotInServiceClass } from "./helpers.js";
 
 // get the radio buttons
 const radioButtons = document.querySelectorAll('input[type=radio]');
