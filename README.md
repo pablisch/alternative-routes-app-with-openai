@@ -21,7 +21,10 @@ PORT=4000 or whatever port you want
 ```
 Run the app in development mode:
 ```bash
-npm run dev
+npm run backend # to start the backend server
+npm run frontend # to start the frontend server
+# index.html is usually served on [localhost:8080](http://localhost:8080)
+npm start # to start both servers concurrently
 ```
 
 ## Usage
