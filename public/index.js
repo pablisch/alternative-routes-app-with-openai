@@ -1,3 +1,6 @@
+// import customStationsArray from './stations.js';
+// console.log(customStationsArray);
+
 const bakerloo = [
   'Harrow & Wealdstone',
   'Kenton',
@@ -323,7 +326,6 @@ const northern = [
   'WoodsidePark',
   'WarrenStreet',
 ]; // 50
-
 const piccadilly = [
   'ActonTown',
   'Alperton',
