@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const bannedWords = ["blowjob", "blow job", "handjob", "hand job", "bugger"]
+
 const OpenAI = require('openai');
 
 const openai = new OpenAI({
@@ -18,6 +20,9 @@ async function generateStationNames(req, res) {
         .json({ error: 'User subject is missing in the request body.' });
     }
 
+    // check if userTheme includes any words in the bannedWords array
+    if (userTheme.inclu)
+
     if (!quantity) {
       return res
         .status(400)
@@ -29,7 +34,7 @@ async function generateStationNames(req, res) {
       messages: [
         {
           role: 'user',
-          content: `Generate an array of ${quantity} strings that are fictional London Underground station names based on the subject, ${userTheme}. The output MUST be only an array of strings. Station names should never include the word "station". Station names should not reference existing underground station names.`,
+          content: `Generate an array of ${quantity} strings that are fictional London Underground station names based on the user theme of ${userTheme}. The output MUST be only an array of strings with NO additional conversational text. Station names should never include the word "station". Station names should not reference existing underground station names. If the user theme contains any adult or inappropriate content, e.g. sexual, pornagraphic, racist, homophobic, etc. then the output should be "NA" as a string and NOT in an array.`,
         },
       ],
       temperature: 1,

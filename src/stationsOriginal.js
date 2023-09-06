@@ -441,22 +441,4 @@ const allStations = {
   waterlooCity
 }
 
-const customStations = {
-  bakerlooCustom: [],
-  centralCustom: [],
-  circleCustom: [],
-  districtCustom: [],
-  hammersmithCityCustom: [],
-  jubileeCustom: [],
-  metropolitanCustom: [],
-  northernCustom: [],
-  piccadillyCustom: [],
-  victoriaCustom: [],
-  waterlooCityCustom: []
-};
-
-module.exports = {
-  allLines,
-  allStations,
-  customStations
-} 
+export default allStations;
