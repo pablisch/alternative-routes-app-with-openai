@@ -1,14 +1,17 @@
-// Bakerloo Line: 25 stations
-// Central Line: 48 stations
-// Circle Line: 35 stations
-// District Line: 60 stations
-// Hammersmith & City Line: 29 stations
-// Jubilee Line: 27 stations
-// Metropolitan Line: 35 stations
-// Northern Line: 50 stations
-// Piccadilly Line: 53 stations
-// Victoria Line: 16 stations
-// Waterloo & City Line: 2 stations
+const numberOfStations = {
+  bakerloo: 25,
+  central: 48,
+  circle: 35,
+  district: 60,
+  hammersmithCity: 29,
+  jubilee: 27,
+  metropolitan: 35,
+  northern: 50,
+  piccadilly: 53,
+  victoria: 16,
+  waterlooCity: 2,
+  total: 380,
+}
 
 const bakerloo = [
   'Harrow & Wealdstone',
@@ -418,9 +421,12 @@ const victoria = [
   'Walthamstow Central',
 ]; // 16
 
-const waterlooCity = ['Bank', 'Waterloo']; // 2
+const waterlooCity = [
+  'Bank',
+  'Waterloo'
+]; // 2
 
-export const allLines = [
+export const allLineNames = [
   'Central',
   'Bakerloo',
   'Circle',
@@ -434,7 +440,7 @@ export const allLines = [
   'Waterloo & City',
 ];
 
-export const allStations = {
+export const allLinesArrays = {
   bakerloo,
   central,
   circle,
@@ -448,7 +454,7 @@ export const allStations = {
   waterlooCity,
 };
 
-export const customStationsArray = {
+export const customStationsArrays = {
   bakerlooCustom: [],
   centralCustom: [],
   circleCustom: [],
@@ -462,8 +468,10 @@ export const customStationsArray = {
   waterlooCityCustom: [],
 };
 
-export default customStationsArray;
-// import someName from './stations.js';
+// Below is examples of how to export and import variables from a module using export and export default from ES6
 
-export const someValue = 4;
-// import  { someValue as someOtherName } from './stations.js';
+// export default customStationsArrays;
+// // import someName from './stations.js';
+
+// export const someValue = 4;
+// // import  { someValue as someOtherName } from './stations.js';

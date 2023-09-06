@@ -1,446 +1,5 @@
-// import customStationsArray from './stations.js';
-// console.log(customStationsArray);
-
-const bakerloo = [
-  'Harrow & Wealdstone',
-  'Kenton',
-  'South Kenton',
-  'North Wembley',
-  'Wembley Central',
-  'Stonebridge Park',
-  'Harlesden',
-  'Willesden Junction',
-  'Kensal Green',
-  "Queen's Park",
-  'Kilburn Park',
-  'Maida Vale',
-  'Warwick Avenue',
-  'Paddington',
-  'Edgware Road',
-  'Marylebone',
-  'Baker Street',
-  "Regent's Park",
-  'Oxford Circus',
-  'Piccadilly Circus',
-  'Charing Cross',
-  'Embankment',
-  'Waterloo',
-  'Lambeth North',
-  'Elephant & Castle',
-]; // 25
-const central = [
-  'West Ruislip',
-  'Ruislip Gardens',
-  'South Ruislip',
-  'Northolt',
-  'Greenford',
-  'Perivale',
-  'Hanger Lane',
-  'North Acton',
-  'West Acton',
-  'East Acton',
-  'White City',
-  'Shepherds Bush',
-  'Holland Park',
-  'Notting Hill Gate',
-  'Queensway',
-  'Lancaster Gate',
-  'Marble Arch',
-  'Bond Street',
-  'Oxford Circus',
-  'Tottenham Court Road',
-  'Holborn',
-  'Chancery Lane',
-  'St Pauls',
-  'Bank',
-  'Liverpool Street',
-  'Bethnal Green',
-  'Mile End',
-  'Stratford',
-  'Leyton',
-  'Leytonstone',
-  'Snaresbrook',
-  'South Woodford',
-  'Woodford',
-  'Buckhurst Hill',
-  'Loughton',
-  'Debden',
-  'Theydon Bois',
-  'Epping',
-  'Roding Valley',
-  'Chigwell',
-  'Grange Hill',
-  'Hainault',
-  'Fairlop',
-  'Barkingside',
-  'Newbury Park',
-  'Gants Hill',
-  'Redbridge',
-  'Wanstead',
-]; // 48
-const circle = [
-  'Hammersmith',
-  'Goldhawk Road',
-  'Shepherds Bush Market',
-  'Wood Lane',
-  'Latimer Road',
-  'Ladbroke Grove',
-  'Westbourne Park',
-  'Royal Oak',
-  'Paddington',
-  'Edgware Road',
-  'Baker Street',
-  'Great Portland Street',
-  'Euston Square',
-  'Kings Cross St Pancras',
-  'Farringdon',
-  'Barbican',
-  'Moorgate',
-  'Liverpool Street',
-  'Aldgate',
-  'Tower Hill',
-  'Monument',
-  'Cannon Street',
-  'Mansion House',
-  'Blackfriars',
-  'Temple',
-  'Embankment',
-  'Westminster',
-  "St James's Park",
-  'Victoria St',
-  'Sloane Square',
-  'South Kensington',
-  'Gloucester Road',
-  'High Street Kensington',
-  'NottingHill Gate',
-  'Bayswater',
-]; // 35
-const district = [
-  'ActonTown',
-  'AldgateEast',
-  'Bromley-by-Bow',
-  'Becontree',
-  'Blackfriars',
-  'Barking',
-  'BaronsCourt',
-  'BowRoad',
-  'Bayswater',
-  'CannonStreet',
-  'ChiswickPark',
-  'DagenhamEast',
-  'DagenhamHeathway',
-  'EalingBroadway',
-  'EalingCommon',
-  'EarlsCourt',
-  'EastHam',
-  'Embankment',
-  'ElmPark',
-  'EastPutney',
-  'EdgwareRoad(CircleLine)',
-  'FulhamBroadway',
-  'Gunnersbury',
-  'GloucesterRoad',
-  'Hornchurch',
-  'Hammersmith(Dist&PiccLine)',
-  'HighStreetKensington',
-  'Kensington(Olympia)',
-  'KewGardens',
-  'MileEnd',
-  'Monument',
-  'MansionHouse',
-  'NottingHillGate',
-  'Paddington',
-  'Plaistow',
-  'ParsonsGreen',
-  'PutneyBridge',
-  'Richmond',
-  'RavenscourtPark',
-  'StamfordBrook',
-  'Southfields',
-  'StepneyGreen',
-  'StJamessPark',
-  'SouthKensington',
-  'SloaneSquare',
-  'Temple',
-  'TurnhamGreen',
-  'TowerHill',
-  'UpminsterBridge',
-  'UptonPark',
-  'Upminster',
-  'Upney',
-  'VictoriaSt',
-  'WestBrompton',
-  'WestHam',
-  'Wimbledon',
-  'WimbledonPark',
-  'WestKensington',
-  'Whitechapel',
-  'Westminster',
-]; // 60
-const hammersmithCity = [
-  'AldgateEast',
-  'Bromley-by-Bow',
-  'Barbican',
-  'Barking',
-  'BakerStreet',
-  'BowRoad',
-  'EastHam',
-  'EdgwareRoad(CircleLine)',
-  'EustonSquare',
-  'Farringdon',
-  'GoldhawkRoad',
-  'GreatPortlandStreet',
-  'Hammersmith(H&CLine)',
-  'KingsCrossStPancras',
-  'LadbrokeGrove',
-  'LatimerRoad',
-  'LiverpoolStreet',
-  'MileEnd',
-  'Moorgate',
-  'Paddington(H&CLine)-Underground',
-  'Plaistow',
-  'RoyalOak',
-  'ShepherdsBushMarket',
-  'StepneyGreen',
-  'UptonPark',
-  'WestHam',
-  'WoodLane',
-  'Whitechapel',
-  'WestbournePark',
-]; // 29
-const jubilee = [
-  'Bermondsey',
-  'BondStreet',
-  'BakerStreet',
-  'CanningTown',
-  'CanonsPark',
-  'CanadaWater',
-  'CanaryWharf',
-  'DollisHill',
-  'FinchleyRoad',
-  'GreenPark',
-  'Kilburn',
-  'Kingsbury',
-  'LondonBridge',
-  'Neasden',
-  'NorthGreenwich',
-  'Queensbury',
-  'StJohnsWood',
-  'Stratford',
-  'Stanmore',
-  'SwissCottage',
-  'Southwark',
-  'WestHam',
-  'WestHampstead',
-  'WillesdenGreen',
-  'Waterloo',
-  'Westminster',
-  'WembleyPark',
-]; // 27
-const metropolitan = [
-  'Aldgate',
-  'Amersham',
-  'Barbican',
-  'BakerStreet',
-  'Chalfont&Latimer',
-  'Chesham',
-  'Croxley',
-  'Chorleywood',
-  'Eastcote',
-  'EustonSquare',
-  'Farringdon',
-  'FinchleyRoad',
-  'GreatPortlandStreet',
-  'Hillingdon',
-  'Harrow-on-the-Hill',
-  'Ickenham',
-  'KingsCrossStPancras',
-  'LiverpoolStreet',
-  'Moorgate',
-  'MoorPark',
-  'NorthHarrow',
-  'NorthwickPark',
-  'Northwood',
-  'NorthwoodHills',
-  'Pinner',
-  'PrestonRoad',
-  'Rickmansworth',
-  'RuislipManor',
-  'Ruislip',
-  'RaynersLane',
-  'Uxbridge',
-  'Watford',
-  'WestHarrow',
-  'WillesdenGreen',
-  'WembleyPark',
-]; // 35
-const northern = [
-  'Archway',
-  'Angel',
-  'Balham',
-  'Bank',
-  'Borough',
-  'BurntOak',
-  'BrentCross',
-  'BelsizePark',
-  'ChalkFarm',
-  'CharingCross',
-  'Colindale',
-  'ClaphamCommon',
-  'ClaphamNorth',
-  'ClaphamSouth',
-  'ColliersWood',
-  'CamdenTown',
-  'Elephant&Castle',
-  'EastFinchley',
-  'Edgware',
-  'Embankment',
-  'Euston',
-  'FinchleyCentral',
-  'GoodgeStreet',
-  'GoldersGreen',
-  'HighBarnet',
-  'HendonCentral',
-  'Highgate',
-  'Hampstead',
-  'Kennington',
-  'KentishTown',
-  'KingsCrossStPancras',
-  'LondonBridge',
-  'LeicesterSquare',
-  'Morden',
-  'Moorgate',
-  'MillHillEast',
-  'MorningtonCrescent',
-  'OldStreet',
-  'Oval',
-  'Stockwell',
-  'SouthWimbledon',
-  'Totteridge&Whetstone',
-  'TootingBec',
-  'TootingBroadway',
-  'TottenhamCourtRoad',
-  'TufnellPark',
-  'WestFinchley',
-  'Waterloo',
-  'WoodsidePark',
-  'WarrenStreet',
-]; // 50
-const piccadilly = [
-  'ActonTown',
-  'Alperton',
-  'ArnosGrove',
-  'Arsenal',
-  'BoundsGreen',
-  'BostonManor',
-  'BaronsCourt',
-  'CaledonianRoad',
-  'CoventGarden',
-  'Cockfosters',
-  'Eastcote',
-  'EalingCommon',
-  'EarlsCourt',
-  'FinsburyPark',
-  'GreenPark',
-  'GloucesterRoad',
-  'Holborn',
-  'Hillingdon',
-  'HattonCross',
-  'HydeParkCorner',
-  'HeathrowTerminal4',
-  'HeathrowTerminal5',
-  'HeathrowTerminals2&3',
-  'Hammersmith(Dist&PiccLine)',
-  'HounslowCentral',
-  'HounslowEast',
-  'HounslowWest',
-  'HollowayRoad',
-  'Ickenham',
-  'Knightsbridge',
-  'KingsCrossStPancras',
-  'LeicesterSquare',
-  'ManorHouse',
-  'NorthEaling',
-  'Northfields',
-  'Oakwood',
-  'Osterley',
-  'PiccadillyCircus',
-  'ParkRoyal',
-  'RuislipManor',
-  'Ruislip',
-  'RussellSquare',
-  'RaynersLane',
-  'SouthEaling',
-  'Southgate',
-  'SouthHarrow',
-  'SouthKensington',
-  'SudburyHill',
-  'SudburyTown',
-  'TurnhamGreen',
-  'TurnpikeLane',
-  'Uxbridge',
-  'WoodGreen',
-]; // 53
-const victoria = [
-  'Blackhorse Road',
-  'Brixton',
-  'Euston',
-  'Finsbury Park',
-  'Green Park',
-  'Highbury & Islington',
-  'Kings Cross St Pancras',
-  'Oxford Circus',
-  'Pimlico',
-  'Stockwell',
-  'Seven Sisters',
-  'Tottenham Hale',
-  'Victoria St',
-  'Vauxhall',
-  'Warren Street',
-  'Walthamstow Central',
-]; // 16
-const waterlooCity = ['Bank', 'Waterloo']; // 2
-const allLines = [
-  'Central',
-  'Bakerloo',
-  'Circle',
-  'District',
-  'Hammersmith & City',
-  'Jubilee',
-  'Metropolitan',
-  'Northern',
-  'Piccadilly',
-  'Victoria',
-  'Waterloo & City',
-];
-const allStations = {
-  bakerloo,
-  central,
-  circle,
-  district,
-  hammersmithCity,
-  jubilee,
-  metropolitan,
-  northern,
-  piccadilly,
-  victoria,
-  waterlooCity,
-};
-const customStations = {
-  bakerlooCustom: [],
-  centralCustom: [],
-  circleCustom: [],
-  districtCustom: [],
-  hammersmithCityCustom: [],
-  jubileeCustom: [],
-  metropolitanCustom: [],
-  northernCustom: [],
-  piccadillyCustom: [],
-  victoriaCustom: [],
-  waterlooCityCustom: [],
-};
-
-// import { allStations, customStations } from './stations.js';
+import { allLinesArrays, customStationsArrays } from "/stations.js";
+import { emptyOriginalListDiv, emptyNewListDiv, removeOriginalClasses, removeNewClasses, AddOriginalNotInServiceClass, AddNewNotInServiceClass } from "/helpers.js";
 
 // get the radio buttons
 const radioButtons = document.querySelectorAll('input[type=radio]');
@@ -462,42 +21,7 @@ let lineSelection = 'No line selected';
 let stations = [];
 let generatedStationNamesArray = [];
 
-console.log(allStations);
-
-// HELPER FUNCTIONS
-
-const removeOriginalClasses = () =>
-  originalListHeading.classList.remove('not-in-service');
-
-const removeNewClasses = () => {
-  newListHeading.classList.remove('not-in-service');
-  newListHeading.classList.remove('loading');
-};
-
-const AddOriginalNotInServiceClass = () =>
-  originalListHeading.classList.add('not-in-service');
-
-const AddNewNotInServiceClass = () =>
-  newListHeading.classList.add('not-in-service');
-
-const emptyOriginalListDiv = () => {
-  if (originalListDiv.hasChildNodes()) {
-    while (originalListDiv.firstChild) {
-      originalListDiv.removeChild(originalListDiv.firstChild);
-    }
-  }
-};
-
-const emptyNewListDiv = () => {
-  if (newListDiv.hasChildNodes()) {
-    while (newListDiv.firstChild) {
-      newListDiv.removeChild(newListDiv.firstChild);
-    }
-  }
-};
-
 const renderOriginalList = (lineSelection, stations) => {
-  // console.log('running renderOriginalList() with', lineSelection);
   emptyOriginalListDiv();
 
   if (lineSelection === 'No line selected') {
@@ -515,10 +39,10 @@ const renderOriginalList = (lineSelection, stations) => {
 
     emptyNewListDiv();
 
-    if (customStations[`${selectedValue}Custom`].length > 0) {
+    if (customStationsArrays[`${selectedValue}Custom`].length > 0) {
       removeNewClasses();
       newListHeading.textContent = `${lineSelection} custom station names`;
-      customStations[`${selectedValue}Custom`].forEach((station) => {
+      customStationsArrays[`${selectedValue}Custom`].forEach((station) => {
         const p = document.createElement('p');
         p.textContent = station;
         newListDiv.appendChild(p);
@@ -549,8 +73,8 @@ const renderNewList = (lineSelection, stations) => {
       newListDiv.appendChild(p);
     });
 
-    customStations[`${selectedValue}Custom`] = stations;
-    console.log('customStations is', customStations);
+    customStationsArrays[`${selectedValue}Custom`] = stations;
+    console.log('customStationsArrays is', customStationsArrays);
 
     // get span element in the selected line's label
     const span = document.querySelector(`label[for=${selectedValue}] span`);
@@ -568,47 +92,47 @@ radioButtons.forEach((radioButton) => {
     switch (selectedValue) {
       case 'bakerloo':
         lineSelection = 'Bakerloo Line';
-        stations = allStations.bakerloo;
+        stations = allLinesArrays.bakerloo;
         break;
       case 'central':
         lineSelection = 'Central Line';
-        stations = allStations.central;
+        stations = allLinesArrays.central;
         break;
       case 'circle':
         lineSelection = 'Circle Line';
-        stations = allStations.circle;
+        stations = allLinesArrays.circle;
         break;
       case 'district':
         lineSelection = 'District Line';
-        stations = allStations.district;
+        stations = allLinesArrays.district;
         break;
       case 'hammersmithCity':
         lineSelection = 'Hammersmith & City Line';
-        stations = allStations.hammersmithCity;
+        stations = allLinesArrays.hammersmithCity;
         break;
       case 'jubilee':
         lineSelection = 'Jubilee Line';
-        stations = allStations.jubilee;
+        stations = allLinesArrays.jubilee;
         break;
       case 'metropolitan':
         lineSelection = 'Metropolitan Line';
-        stations = allStations.metropolitan;
+        stations = allLinesArrays.metropolitan;
         break;
       case 'northern':
         lineSelection = 'Northern Line';
-        stations = allStations.northern;
+        stations = allLinesArrays.northern;
         break;
       case 'piccadilly':
         lineSelection = 'Piccadilly Line';
-        stations = allStations.piccadilly;
+        stations = allLinesArrays.piccadilly;
         break;
       case 'victoria':
         lineSelection = 'Victoria Line';
-        stations = allStations.victoria;
+        stations = allLinesArrays.victoria;
         break;
       case 'waterlooCity':
         lineSelection = 'Waterloo & City Line';
-        stations = waterlooCity;
+        stations = allLinesArrays.waterlooCity;
         break;
       case 'none':
         lineSelection = 'No line selected';
