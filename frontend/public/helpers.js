@@ -21,6 +21,7 @@ export const AddOriginalNotInServiceClass = () =>
 
 export const AddNewNotInServiceClass = () =>
   newListHeading.classList.add('not-in-service');
+  newListHeading.classList.remove('loading');
 
 export const emptyOriginalListDiv = () => {
   if (originalListDiv.hasChildNodes()) {

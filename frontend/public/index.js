@@ -175,7 +175,7 @@ trackForm.addEventListener('submit', async (e) => {
   if (data.generatedStationNames === 'NA') {
     AddNewNotInServiceClass();
     newListHeading.textContent =
-      'The theme could not be accepted. Please try another theme.';
+      'That theme could not be accepted. Please try another theme.';
     return;
   }
 

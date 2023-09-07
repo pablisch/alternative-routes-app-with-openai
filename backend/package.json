@@ -1,13 +1,12 @@
 {
-  "name": "openai-test-app",
+  "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "backend": "nodemon app.js",
-    "frontend": "http-server ./public",
-    "start": "concurrently \"nodemon app.js\" \"http-server ./public\""
+    "backend": "nodemon server.js",
+    "start": "concurrently \"nodemon server.js\" \"http-server ../frontend/public\""
   },
   "keywords": [],
   "author": "",
@@ -17,9 +16,6 @@
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "nodemon": "^3.0.1",
-    "openai": "^4.4.0"
-  },
-  "devDependencies": {
-    "concurrently": "^8.2.1"
+    "openai": "^4.5.0"
   }
 }

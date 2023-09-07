@@ -21,10 +21,21 @@ PORT=4000 or whatever port you want
 ```
 Run the app in development mode:
 ```bash
-npm run backend # to start the backend server
-npm run frontend # to start the frontend server
+# to start the backend server
+cd backend
+npm run backend 
+# the server will be listening on the port you specified in the .env file or 4000 by default
+```
+```bash
+# to start the frontend server
+cd frontend
+npm run frontend 
 # index.html is usually served on [localhost:8080](http://localhost:8080)
-npm start # to start both servers concurrently
+```
+```bash
+# to start both servers concurrently
+npm start
+# index.html is usually served on [localhost:8080](http://localhost:8080)
 ```
 
 ## Usage
@@ -40,4 +51,6 @@ This current version of the app has no database and so no changes made or statio
 ## App Structure
 The original version of the app was built entirely on a Node.js and Express.js backend with no database which inlcuded the use of a static public folder and all browser pages and logic were served from the backend server.
 
-This second iteration introduces a separate frontend server using vanilla js and a simple html page. The backend server is now used only for the API calls to OpenAI and the frontend server is used to serve the html page and the static assets.
+The second iteration introduced a separate frontend server using vanilla js and a simple html page. The backend server became used only for the API calls to OpenAI and the frontend server used to serve the html page and the static assets.
+
+This third iteration has moved the frontend and backend into separate folders to provide a clear separation and structure in preparation for the introduction of a database and later the use of a framework such as React.

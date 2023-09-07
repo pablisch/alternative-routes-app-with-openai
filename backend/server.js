@@ -1,6 +1,6 @@
 const express = require('express')
 const generateStationNames = require('./controllers/openaiController')
-const PORT = process.env.PORT || 3333
+const PORT = process.env.PORT || 4000
 const cors = require('cors')
 
 // express app setup
