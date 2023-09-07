@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const bannedWords = ["blowjob", "blow job", "handjob", "hand job", "bugger"]
+const bannedWords = ["blowjob", "blow job", "handjob", "hand job", "bugger", "porn"]
 
 const OpenAI = require('openai');
 
