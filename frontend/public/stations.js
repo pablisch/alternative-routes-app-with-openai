@@ -468,6 +468,20 @@ export const customStationsArrays = {
   waterlooCityCustom: [],
 };
 
+export const customStationThemes = {
+  bakerlooTheme: '',
+  centralTheme: '',
+  circleTheme: '',
+  districtTheme: '',
+  hammersmithCityTheme: '',
+  jubileeTheme: '',
+  metropolitanTheme: '',
+  northernTheme: '',
+  piccadillyTheme: '',
+  victoriaTheme: '',
+  waterlooCityTheme: '',
+};
+
 // Below is examples of how to export and import variables from a module using export and export default from ES6
 
 // export default customStationsArrays;

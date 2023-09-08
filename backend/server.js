@@ -1,5 +1,6 @@
 const express = require('express')
 const generateStationNames = require('./controllers/openaiController')
+const { getAllTrainlines, getSingleTrainline, postNewTrainline, updateTrainline } = require('./controllers/trainlineController')
 const PORT = process.env.PORT || 4000
 const cors = require('cors')
 const mongoose = require('mongoose')
@@ -18,6 +19,11 @@ app.use(cors())
 
 // routes
 app.post('/openai/tracks', generateStationNames)
+app.get('/lines', getAllTrainlines)
+app.get('/lines/:lineName', getSingleTrainline)
+app.post('/lines', postNewTrainline)
+app.put('/lines/:lineName', updateTrainline)
+
 
 // Connect to the database
 mongoose.connect(MONGODB_URI, {

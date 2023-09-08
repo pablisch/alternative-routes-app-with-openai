@@ -1,4 +1,4 @@
-import { allLinesArrays, customStationsArrays } from "./stations.js";
+import { allLinesArrays, customStationsArrays, customStationThemes } from "./stations.js";
 import { emptyOriginalListDiv, emptyNewListDiv, removeOriginalClasses, removeNewClasses, AddOriginalNotInServiceClass, AddNewNotInServiceClass } from "./helpers.js";
 
 // get the radio buttons
@@ -20,6 +20,31 @@ let selectedValue = null;
 let lineSelection = 'No line selected';
 let stations = [];
 let generatedStationNamesArray = [];
+
+// fetch all custom stations from the database
+const fetchCustomStations = async () => {
+  try {
+    const res = await fetch('http://localhost:4000/lines');
+    const data = await res.json();
+    console.log('data is', data);
+    if (data.trainlines) {
+      data.trainlines.forEach((trainline) => {  
+        customStationsArrays[`${trainline.lineName}Custom`] = trainline.stations;
+        if (trainline.theme !== '') {
+          customStationThemes[`${trainline.lineName}Theme`] = trainline.theme;
+          const span = document.querySelector(`label[for=${trainline.lineName}] span`);
+          span.textContent = ` (${trainline.theme})`;
+        }
+      });
+    }
+    console.log('customStationsArrays is', customStationsArrays);
+    console.log('customStationThemes is', customStationThemes)
+  } catch (error) {
+    console.log('error is', error);
+  }
+};
+
+fetchCustomStations();
 
 const renderOriginalList = (lineSelection, stations) => {
   emptyOriginalListDiv();
