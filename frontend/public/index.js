@@ -1,5 +1,16 @@
-import { allLinesArrays, customStationsArrays, customStationThemes } from "./stations.js";
-import { emptyOriginalListDiv, emptyNewListDiv, removeOriginalClasses, removeNewClasses, AddOriginalNotInServiceClass, AddNewNotInServiceClass } from "./helpers.js";
+import {
+  allLinesArrays,
+  customStationsArrays,
+  customStationThemes,
+} from './stations.js';
+import {
+  emptyOriginalListDiv,
+  emptyNewListDiv,
+  removeOriginalClasses,
+  removeNewClasses,
+  AddOriginalNotInServiceClass,
+  AddNewNotInServiceClass,
+} from './helpers.js';
 
 // get the radio buttons
 const radioButtons = document.querySelectorAll('input[type=radio]');
@@ -17,7 +28,8 @@ const originalListHeading = document.querySelector(
 const newListHeading = document.querySelector('.new-stations-panel h3');
 // set the initial selected radio button value to null
 let selectedValue = null;
-let lineSelection = 'No line selected';
+let currentTheme = '';
+let fullLineTitle = 'No line selected';
 let stations = [];
 let generatedStationNamesArray = [];
 
@@ -28,17 +40,20 @@ const fetchCustomStations = async () => {
     const data = await res.json();
     console.log('data is', data);
     if (data.trainlines) {
-      data.trainlines.forEach((trainline) => {  
-        customStationsArrays[`${trainline.lineName}Custom`] = trainline.stations;
+      data.trainlines.forEach((trainline) => {
+        customStationsArrays[`${trainline.lineName}Custom`] =
+          trainline.stations;
         if (trainline.theme !== '') {
           customStationThemes[`${trainline.lineName}Theme`] = trainline.theme;
-          const span = document.querySelector(`label[for=${trainline.lineName}] span`);
+          const span = document.querySelector(
+            `label[for=${trainline.lineName}] span`
+          );
           span.textContent = ` (${trainline.theme})`;
         }
       });
     }
     console.log('customStationsArrays is', customStationsArrays);
-    console.log('customStationThemes is', customStationThemes)
+    console.log('customStationThemes is', customStationThemes);
   } catch (error) {
     console.log('error is', error);
   }
@@ -46,16 +61,33 @@ const fetchCustomStations = async () => {
 
 fetchCustomStations();
 
-const renderOriginalList = (lineSelection, stations) => {
+const writeNewStationsToDatabase = async (lineName, stations, theme) => {
+  try {
+    const res = await fetch(`http://localhost:4000/lines/${lineName}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        stations,
+        theme,
+      }),
+    });
+    const data = await res.json();
+    console.log('data is', data);
+  } catch (error) {
+    console.log('error is', error);
+  }
+};
+
+const renderOriginalList = (fullLineTitle, stations) => {
   emptyOriginalListDiv();
 
-  if (lineSelection === 'No line selected') {
+  if (fullLineTitle === 'No line selected') {
     AddOriginalNotInServiceClass();
     originalListHeading.textContent = 'No line selected';
     return;
   } else {
     removeOriginalClasses();
-    originalListHeading.textContent = `${lineSelection} original station names`;
+    originalListHeading.textContent = `${fullLineTitle} original station names`;
     stations.forEach((station) => {
       const p = document.createElement('p');
       p.textContent = station;
@@ -66,7 +98,7 @@ const renderOriginalList = (lineSelection, stations) => {
 
     if (customStationsArrays[`${selectedValue}Custom`].length > 0) {
       removeNewClasses();
-      newListHeading.textContent = `${lineSelection} custom station names`;
+      newListHeading.textContent = `${fullLineTitle} custom station names`;
       customStationsArrays[`${selectedValue}Custom`].forEach((station) => {
         const p = document.createElement('p');
         p.textContent = station;
@@ -80,18 +112,18 @@ const renderOriginalList = (lineSelection, stations) => {
   }
 };
 
-const renderNewList = (lineSelection, stations) => {
-  console.log('running renderNewList() with', lineSelection);
+const renderNewList = (fullLineTitle, stations) => {
+  console.log('running renderNewList() with', fullLineTitle);
   console.log('stations are', stations);
   // emptyNewListDiv();
 
-  if (lineSelection === 'No line selected') {
+  if (fullLineTitle === 'No line selected') {
     AddNewNotInServiceClass();
     newListHeading.textContent = 'No line selected';
     return;
   } else {
     removeNewClasses();
-    newListHeading.textContent = `${lineSelection} custom station names`;
+    newListHeading.textContent = `${fullLineTitle} custom station names`;
     stations.forEach((station) => {
       const p = document.createElement('p');
       p.textContent = station;
@@ -116,58 +148,58 @@ radioButtons.forEach((radioButton) => {
     console.log('selected station value:', selectedValue);
     switch (selectedValue) {
       case 'bakerloo':
-        lineSelection = 'Bakerloo Line';
+        fullLineTitle = 'Bakerloo Line';
         stations = allLinesArrays.bakerloo;
         break;
       case 'central':
-        lineSelection = 'Central Line';
+        fullLineTitle = 'Central Line';
         stations = allLinesArrays.central;
         break;
       case 'circle':
-        lineSelection = 'Circle Line';
+        fullLineTitle = 'Circle Line';
         stations = allLinesArrays.circle;
         break;
       case 'district':
-        lineSelection = 'District Line';
+        fullLineTitle = 'District Line';
         stations = allLinesArrays.district;
         break;
       case 'hammersmithCity':
-        lineSelection = 'Hammersmith & City Line';
+        fullLineTitle = 'Hammersmith & City Line';
         stations = allLinesArrays.hammersmithCity;
         break;
       case 'jubilee':
-        lineSelection = 'Jubilee Line';
+        fullLineTitle = 'Jubilee Line';
         stations = allLinesArrays.jubilee;
         break;
       case 'metropolitan':
-        lineSelection = 'Metropolitan Line';
+        fullLineTitle = 'Metropolitan Line';
         stations = allLinesArrays.metropolitan;
         break;
       case 'northern':
-        lineSelection = 'Northern Line';
+        fullLineTitle = 'Northern Line';
         stations = allLinesArrays.northern;
         break;
       case 'piccadilly':
-        lineSelection = 'Piccadilly Line';
+        fullLineTitle = 'Piccadilly Line';
         stations = allLinesArrays.piccadilly;
         break;
       case 'victoria':
-        lineSelection = 'Victoria Line';
+        fullLineTitle = 'Victoria Line';
         stations = allLinesArrays.victoria;
         break;
       case 'waterlooCity':
-        lineSelection = 'Waterloo & City Line';
+        fullLineTitle = 'Waterloo & City Line';
         stations = allLinesArrays.waterlooCity;
         break;
       case 'none':
-        lineSelection = 'No line selected';
+        fullLineTitle = 'No line selected';
         stations = [];
         break;
       default:
-        lineSelection = 'No line selected';
+        fullLineTitle = 'No line selected';
         stations = [];
     }
-    renderOriginalList(lineSelection, stations);
+    renderOriginalList(fullLineTitle, stations);
   });
 });
 
@@ -175,8 +207,10 @@ radioButtons.forEach((radioButton) => {
 trackForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  console.log('theme is', trackForm.userTheme.value);
-  console.log('lineSelection is', lineSelection);
+  currentTheme = trackForm.userTheme.value;
+
+  console.log('theme is', currentTheme);
+  console.log('fullLineTitle is', fullLineTitle);
   console.log('stations are', stations);
 
   // set heading of new station list to 'Generating Custom Names'
@@ -229,9 +263,8 @@ trackForm.addEventListener('submit', async (e) => {
     return;
   }
 
-  generatedStationNamesArray.forEach((station, index) => {
-    console.log(`station ${index + 1} is ${station}`);
-  });
+  console.log('selectedValue is', selectedValue, 'currentTheme is', currentTheme);
 
-  renderNewList(lineSelection, generatedStationNamesArray);
+  writeNewStationsToDatabase(selectedValue, generatedStationNamesArray, currentTheme);
+  renderNewList(fullLineTitle, generatedStationNamesArray);
 });
