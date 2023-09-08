@@ -11,6 +11,7 @@ import {
   AddOriginalNotInServiceClass,
   AddNewNotInServiceClass,
 } from './helpers.js';
+import { bannedWords } from './bannedWords.js';
 
 // get the radio buttons
 const radioButtons = document.querySelectorAll('input[type=radio]');
@@ -32,6 +33,8 @@ let currentTheme = '';
 let fullLineTitle = 'No line selected';
 let stations = [];
 let generatedStationNamesArray = [];
+let containsBannedWord = false;
+let themeWord;
 
 // fetch all custom stations from the database
 const fetchCustomStations = async () => {
@@ -76,6 +79,17 @@ const writeNewStationsToDatabase = async (lineName, stations, theme) => {
   } catch (error) {
     console.log('error is', error);
   }
+};
+
+const containsBanndedWords = (theme) => {
+  themeWord = theme.toLowerCase();
+  containsBannedWord = false;
+  bannedWords.forEach((bannedWord) => {
+    if (themeWord.includes(bannedWord)) {
+      containsBannedWord = true;
+    }
+  });
+  return containsBannedWord;
 };
 
 const renderOriginalList = (fullLineTitle, stations) => {
@@ -206,8 +220,15 @@ radioButtons.forEach((radioButton) => {
 // add event listener to the form
 trackForm.addEventListener('submit', async (e) => {
   e.preventDefault();
-
   currentTheme = trackForm.userTheme.value;
+
+  if (containsBanndedWords(currentTheme)) {
+    AddNewNotInServiceClass();
+    emptyNewListDiv();
+    newListHeading.textContent =
+      'That theme cannot be accepted at this time. It may be offensive or inappropriate.';
+    return;
+  }
 
   console.log('theme is', currentTheme);
   console.log('fullLineTitle is', fullLineTitle);
@@ -230,6 +251,8 @@ trackForm.addEventListener('submit', async (e) => {
 
   const data = await res.json();
   console.log('data is', data);
+  // write data to local storage
+  localStorage.setItem('generatedStationNames', data.generatedStationNames);
 
   if (data.generatedStationNames === 'NA') {
     AddNewNotInServiceClass();
@@ -264,6 +287,11 @@ trackForm.addEventListener('submit', async (e) => {
   }
 
   console.log('selectedValue is', selectedValue, 'currentTheme is', currentTheme);
+
+  while (generatedStationNamesArray.length > stations.length) {
+    console.log('number of results is', generatedStationNamesArray.length);
+    generatedStationNamesArray.pop();
+  }
 
   writeNewStationsToDatabase(selectedValue, generatedStationNamesArray, currentTheme);
   renderNewList(fullLineTitle, generatedStationNamesArray);

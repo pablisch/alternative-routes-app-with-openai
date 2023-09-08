@@ -1,0 +1,1 @@
+export const bannedWords = ["blowjob", "blow job", "handjob", "hand job", "bugger", "porn", "nigger", "queer", "yid", "porn", "anal", "hitler", "trump"]

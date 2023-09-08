@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-const bannedWords = ["blowjob", "blow job", "handjob", "hand job", "bugger", "porn"]
-
 const OpenAI = require('openai');
 
 const openai = new OpenAI({
@@ -34,11 +32,11 @@ async function generateStationNames(req, res) {
       messages: [
         {
           role: 'user',
-          content: `Generate an array of ${quantity} strings that are fictional London Underground station names based on the user theme of ${userTheme}. The output MUST be only an array of strings with NO additional conversational text. Station names should never include the word "station". Station names should not reference existing underground station names. If the user theme contains any adult or inappropriate content, e.g. sexual, pornagraphic, racist, homophobic, etc. then the output should be "NA" as a string and NOT in an array.`,
+          content: `Generate an array of ${quantity} strings that are fictional London Underground station names based on the user theme of ${userTheme}. The output MUST be only an array of strings with NO additional conversational text. Station names should never include the word "station". Station names should not reference existing underground station names. If the user theme contains any adult or inappropriate content, e.g. sexual, pornagraphic, racist, homophobic, etc. then the output should be "NA" as a string and NOT in an array. It is important that there are exactly ${quantity} station names in the output array.`,
         },
       ],
       temperature: 1,
-      max_tokens: 256,
+      max_tokens: 1000,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
