@@ -36,6 +36,16 @@ let generatedStationNamesArray = [];
 let containsBannedWord = false;
 let themeWord;
 
+// Hide and show nav buttons
+const navButtons = document.querySelectorAll('.nav-links li a');
+navButtons.forEach((navButton) => {
+  if (navButton.innerHTML === "Home") {
+    navButton.classList.add('inactive');
+  } else {
+    navButton.classList.remove('inactive');
+  }
+});
+
 // fetch all custom stations from the database
 const fetchCustomStations = async () => {
   try {
