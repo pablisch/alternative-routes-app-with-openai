@@ -49,8 +49,12 @@ This current version of the app has no database and so no changes made or statio
 6. You may switch to another line and as long as the page is not refreshed, any generated names and themes will be remembered.
 
 ## App Structure
-The original version of the app was built entirely on a Node.js and Express.js backend with no database which inlcuded the use of a static public folder and all browser pages and logic were served from the backend server.
+v1.The original version of the app was built entirely on a Node.js and Express.js backend with no database which inlcuded the use of a static public folder and all browser pages and logic were served from the backend server.
 
-The second iteration introduced a separate frontend server using vanilla js and a simple html page. The backend server became used only for the API calls to OpenAI and the frontend server used to serve the html page and the static assets.
+v2. The second iteration introduced a separate frontend server using vanilla js and a simple html page. The backend server became used only for the API calls to OpenAI and the frontend server used to serve the html page and the static assets.
 
-This third iteration has moved the frontend and backend into separate folders to provide a clear separation and structure in preparation for the introduction of a database and later the use of a framework such as React.
+v3. This third iteration has moved the frontend and backend into separate folders to provide a clear separation and structure in preparation for the introduction of a database and later the use of a framework such as React.
+
+v4. The fourth iteration has introduced a database using MongoDB and Mongoose. The database is used to store the generated names and themes and the station names for each line. The frontend and backend servers have been updated to use the database and the frontend has been updated to display the station names from the database.
+
+This iteration also introduces additional ppages for 'about' and 'contact'.
