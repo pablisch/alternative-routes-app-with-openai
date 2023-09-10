@@ -47,7 +47,8 @@ app.post("/send-email", async (req, res) => {
 
   const mailOptions = {
       from: smtpUsername,
-      to: emailTo,
+      // to: emailTo,
+      to: "nobody@example.com",
       subject: `Contact Us Form Submission from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}\nSubscribe?: ${subscribe}`,
   };
