@@ -34,6 +34,7 @@ npm run frontend
 ```
 ```bash
 # to start both servers concurrently
+cd backend
 npm start
 # index.html is usually served on [localhost:8080](http://localhost:8080)
 ```
