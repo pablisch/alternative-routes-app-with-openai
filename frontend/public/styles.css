@@ -300,7 +300,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-.contact-form {
+#contact-form-container {
   max-width: 450px;
   margin: 50px auto 0;
   padding: 20px 40px;
@@ -310,7 +310,7 @@ body {
   color: #777;
 }
 
-.contact-form h2 {
+#contact-form-container h2 {
   font-family: "Hammersmith One";
   text-align: center;
   font-size: 1.9rem;
@@ -388,4 +388,27 @@ body {
 #contact-form #newsletter-label {
   display: inline-block;
   font-size: 0.9rem;
+}
+
+/* POP UP CONFIRMATION FOR CONTACT */
+
+.popup {
+  background-color: rgb(208, 224, 177);
+  color: #575b57;
+  padding: 40px;
+  border-radius: 15px;
+  border: 1px solid #3c423c;
+  text-align: center;
+  z-index: 1000;
+  width: 450px;
+  height: 547px;
+  margin: 50px auto 0;
+  display: flex; /* Use flexbox for centering */
+  flex-direction: column; /* Stack child elements vertically */
+  justify-content: center; /* Vertically center child elements */
+  font-size: 2.2rem;
+}
+
+.hidden {
+  display: none;
 }

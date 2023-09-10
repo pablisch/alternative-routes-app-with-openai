@@ -32,7 +32,7 @@ app.get('/lines/:lineName', getSingleTrainline)
 app.post('/lines', postNewTrainline)
 app.put('/lines/:lineName', updateTrainline)
 app.post("/send-email", async (req, res) => {
-  const { name, email, message, newsletter } = req.body;
+  const { name, email, message, subscribe } = req.body;
 
   const transporter = nodemailer.createTransport({
     // host: 'smtp.mail.me.com',
@@ -49,7 +49,7 @@ app.post("/send-email", async (req, res) => {
       from: smtpUsername,
       to: emailTo,
       subject: `Contact Us Form Submission from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}\nNewsletter: ${newsletter}`,
+      text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}\nSubscribe?: ${subscribe}`,
   };
 
   try {
