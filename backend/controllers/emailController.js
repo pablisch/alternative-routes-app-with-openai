@@ -9,7 +9,7 @@ const sendEmail = async (req, res) => {
   const { name, email, message, subscribe } = req.body;
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    service: emailService,
     auth: {
         user: smtpUsername,
         pass: smtpPassword,
