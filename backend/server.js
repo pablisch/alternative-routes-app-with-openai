@@ -7,7 +7,8 @@ const mongoose = require('mongoose')
 const nodemailer = require('nodemailer')
 
 // routes folder routes
-const openaiRoutes = require('./routes/openaiRoutes')
+const openaiRoutes = require('./routes/openaiRoutes');
+const trainlineRoutes = require('./routes/trainlineRoutes');
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER_NAME}:${process.env.MONGO_USER_PW}@cluster0.hdkqhw5.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`
 
@@ -30,13 +31,9 @@ app.use(cors())
 
 // routes folder routes
 app.use('/openai', openaiRoutes)
+app.use('/lines', trainlineRoutes)
 
 // routes
-// app.post('/openai/tracks', generateStationNames)
-app.get('/lines', getAllTrainlines)
-app.get('/lines/:lineName', getSingleTrainline)
-app.post('/lines', postNewTrainline)
-app.put('/lines/:lineName', updateTrainline)
 app.post("/send-email", async (req, res) => {
   const { name, email, message, subscribe } = req.body;
 
