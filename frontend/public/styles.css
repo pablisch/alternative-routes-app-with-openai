@@ -1,9 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Hammersmith+One&family=Poppins:wght@400;700&display=swap');
 
+/* GLOBAL */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+/* set colour variables */
+
+:root {
+  --panelMidLight: #ddd;
+  --inputBorder: #b5b5b5;
 }
 
 body {
@@ -52,7 +61,7 @@ nav {
   margin: 0;
 }
 
-.nav-brand span {
+.nav-brand span, .about-page span {
   color: #c929b9;
 }
 
@@ -233,12 +242,21 @@ form span {
   text-decoration: none;
 }
 
-/* CONTACT PAGE SPECIFIC */
-
-#contact-form input {
-  background-color: #fff;
-  color: #444;
+.about-page h1 {
+  color: #333;
+  font-family: "Hammersmith One";
+  font-size: 1.9rem;
+  padding: 40px 10px 10px;
 }
+
+.about-page p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #555555;
+  padding: 10px;
+}
+
+/* CONTACT PAGE SPECIFIC */
 
 /* styles.css */
 body {
@@ -246,21 +264,31 @@ body {
 }
 
 .contact-form {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  max-width: 450px;
+  margin: 50px auto 0;
+  padding: 20px 40px;
+  border: 1px solid #999;
+  border-radius: 15px;
+  background-color: var(--panelMidLight);
+  color: #777;
 }
 
 .contact-form h2 {
+  font-family: "Hammersmith One";
   text-align: center;
+  font-size: 1.9rem;
 }
 
 #contact-form label {
+  font-family: "Poppins";
   display: block;
-  margin-top: 10px;
-  color: #666;
+  margin: 15px 0 5px;
+  font-size: 1.2rem;
+}
+
+#contact-form input {
+  background-color: #fff;
+  color: #444;
 }
 
 #contact-form input[type="text"],
@@ -268,16 +296,47 @@ body {
 #contact-form textarea {
   width: 100%;
   padding: 10px;
-  margin-top: 5px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  border: 1px solid var(--inputBorder);
+  border-radius: 5px;
+  margin: 0 auto;
 }
+
+/* Hide the default checkbox */
+.custom-checkbox input[type="checkbox"] {
+  display: none;
+}
+
+/* Style the custom checkbox container */
+.custom-checkbox .checkmark {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: #fff; /* Change this to the desired border color */
+  border: 1px solid var(--inputBorder); 
+  border-radius: 4px;
+  margin: 30px 10px 0 0;
+}
+
+/* Style the custom checkbox when checked */
+.custom-checkbox input[type="checkbox"]:checked + .checkmark {
+  background-color: #007bff; /* Change this to the desired background color when checked */
+  border: 2px solid #007bff; /* Change this to the desired border color when checked */
+}
+
+/* Style the label text */
+.custom-checkbox label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
 
 #contact-form button {
   display: block;
-  width: 100%;
+  width: 50%;
+  margin: 20px auto 15px;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #6fa060;
   color: #fff;
   border: none;
   border-radius: 3px;
@@ -285,18 +344,11 @@ body {
 }
 
 #contact-form button:hover {
-  background-color: #0056b3;
+  background-color: #12841e;
+  color: #e2ff05;
 }
 
 #contact-form #newsletter-label {
   display: inline-block;
   font-size: 0.9rem;
-}
-
-#contact-form input[type="checkbox"] {
-  width: 30px;
-  padding: 30px;
-  margin-top: 20px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
 }
