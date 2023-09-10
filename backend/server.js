@@ -6,6 +6,9 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const nodemailer = require('nodemailer')
 
+// routes folder routes
+const openaiRoutes = require('./routes/openaiRoutes')
+
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER_NAME}:${process.env.MONGO_USER_PW}@cluster0.hdkqhw5.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`
 
 const smtpUsername = process.env.SMTP_USERNAME;
@@ -25,8 +28,11 @@ app.use(cors())
 
 // app.use(express.static('public')) // For use when not using a separate front-end
 
+// routes folder routes
+app.use('/openai', openaiRoutes)
+
 // routes
-app.post('/openai/tracks', generateStationNames)
+// app.post('/openai/tracks', generateStationNames)
 app.get('/lines', getAllTrainlines)
 app.get('/lines/:lineName', getSingleTrainline)
 app.post('/lines', postNewTrainline)
@@ -47,8 +53,8 @@ app.post("/send-email", async (req, res) => {
 
   const mailOptions = {
       from: smtpUsername,
-      // to: emailTo,
-      to: "nobody@example.com",
+      // to: emailTo, // for REAL USE
+      to: "nobody@example.com", // for TESTING ONLY
       subject: `Contact Us Form Submission from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}\nSubscribe?: ${subscribe}`,
   };
