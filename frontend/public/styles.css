@@ -238,6 +238,10 @@ form span {
 
 /* ABOUT PAGE SPECIFIC */
 
+.about-page {
+  text-align: center;
+}
+
 .about-page a {
   text-decoration: none;
 }
@@ -255,6 +259,39 @@ form span {
   color: #555555;
   padding: 10px;
 }
+
+.top-text {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.left-text, .right-text {
+  flex: 1 1;
+  padding: 10px;
+}
+
+.lupo-logo-div img {
+  max-width: 300px;
+  margin: 10px auto 0;
+  padding: 0 30px;
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .lupo-logo {
+    animation: lupo-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes lupo-logo-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 
 /* CONTACT PAGE SPECIFIC */
 
