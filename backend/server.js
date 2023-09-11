@@ -11,14 +11,6 @@ const emailRoutes = require('./routes/emailRoutes');
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER_NAME}:${process.env.MONGO_USER_PW}@cluster0.hdkqhw5.mongodb.net/${process.env.MONGO_DB_NAME}?retryWrites=true&w=majority`
 
-const { AbortController } = require('abort-controller');
-require('dotenv').config();
-
-// Initialize the AbortController if needed
-const controller = new AbortController();
-
-console.log('email service is', process.env.EMAIL_SERVICE)
-
 // express app setup
 const app = express()
 
