@@ -1,3 +1,5 @@
+import { baseUrl } from './baseUrl.js'
+
 let formData;
 let senderName;
 let email;
@@ -29,7 +31,7 @@ const sendEmail = (senderName, email, message, subscribe) => {
   console.log("Subscribe?: " + subscribe);
 
   // Send a POST request to the backend endpoint
-  fetch("http://localhost:4000/send-email", {
+  fetch(`${baseUrl}/send-email`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -1,3 +1,5 @@
+import { baseUrl } from './baseUrl.js'
+
 import {
   allLinesArrays,
   customStationsArrays,
@@ -12,6 +14,8 @@ import {
   AddNewNotInServiceClass,
 } from './helpers.js';
 import { bannedWords } from './bannedWords.js';
+
+console.log('baseUrl is', baseUrl);
 
 // get the radio buttons
 const radioButtons = document.querySelectorAll('input[type=radio]');
@@ -49,7 +53,7 @@ navButtons.forEach((navButton) => {
 // fetch all custom stations from the database
 const fetchCustomStations = async () => {
   try {
-    const res = await fetch('http://localhost:4000/lines');
+    const res = await fetch(`${baseUrl}/lines`);
     const data = await res.json();
     console.log('data is', data);
     if (data.trainlines) {
@@ -76,7 +80,7 @@ fetchCustomStations();
 
 const writeNewStationsToDatabase = async (lineName, stations, theme) => {
   try {
-    const res = await fetch(`http://localhost:4000/lines/${lineName}`, {
+    const res = await fetch(`${baseUrl}/lines/${lineName}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -250,7 +254,7 @@ trackForm.addEventListener('submit', async (e) => {
   newListHeading.classList.add('loading');
   newListHeading.textContent = 'Generating Custom Names...';
 
-  const res = await fetch('http://localhost:4000/openai/tracks/', {
+  const res = await fetch(`${baseUrl}/openai/tracks/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

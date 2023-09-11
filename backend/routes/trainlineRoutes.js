@@ -12,8 +12,8 @@ const router = express.Router()
 // Create the routes
 router.get('/', getAllTrainlines)
 router.get('/:lineName', getSingleTrainline)
-router.post('/', postNewTrainline)
 router.put('/:lineName', updateTrainline)
+// router.post('/', postNewTrainline)
 
 // Export the router
 module.exports = router;
