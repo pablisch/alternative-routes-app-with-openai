@@ -1,10 +1,10 @@
-import { baseUrl } from './baseUrl.js'
+import { baseUrl } from './js/baseUrl.js'
 
 import {
   allLinesArrays,
   customStationsArrays,
   customStationThemes,
-} from './stations.js';
+} from './js/stations.js';
 import {
   emptyOriginalListDiv,
   emptyNewListDiv,
@@ -12,8 +12,8 @@ import {
   removeNewClasses,
   AddOriginalNotInServiceClass,
   AddNewNotInServiceClass,
-} from './helpers.js';
-import { bannedWords } from './bannedWords.js';
+} from './js/helpers.js';
+import { bannedWords } from './js/bannedWords.js';
 
 console.log('baseUrl is', baseUrl);
 
