@@ -24,17 +24,6 @@ const getSingleTrainline = async (req, res) => {
   }
 };
 
-// POST a new trainline
-const postNewTrainline = async (req, res) => {
-  try {
-    const { lineName, stations, theme } = req.body;
-    const trainline = await Trainline.create({ lineName, stations, theme });
-    return res.status(201).json({ trainline });
-  } catch (error) {
-    return res.status(500).json({ error: 'An error occurred while posting a new trainline.' });
-  }
-};
-
 // PUT (update) a trainline by lineName
 const updateTrainline = async (req, res) => {
   try {
@@ -50,11 +39,22 @@ const updateTrainline = async (req, res) => {
   }
 };
 
+// // POST a new trainline
+// const postNewTrainline = async (req, res) => {
+//   try {
+//     const { lineName, stations, theme } = req.body;
+//     const trainline = await Trainline.create({ lineName, stations, theme });
+//     return res.status(201).json({ trainline });
+//   } catch (error) {
+//     return res.status(500).json({ error: 'An error occurred while posting a new trainline.' });
+//   }
+// };
+
 //export functions
 module.exports = {
   getAllTrainlines,
   getSingleTrainline,
-  postNewTrainline,
   updateTrainline,
+  // postNewTrainline,
 };
 

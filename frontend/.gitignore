@@ -2,6 +2,9 @@
 
 bundle.js
 
+# project specific
+# public/baseUrl.js
+
 # pws and keys
 config.js
 

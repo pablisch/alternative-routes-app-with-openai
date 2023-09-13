@@ -1,4 +1,8 @@
+const { AbortController } = require('abort-controller');
 require('dotenv').config();
+
+// Initialize the AbortController if needed
+const controller = new AbortController();
 
 const OpenAI = require('openai');
 
