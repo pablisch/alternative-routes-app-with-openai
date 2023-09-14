@@ -39,7 +39,7 @@ const updateTrainline = async (req, res) => {
   }
 };
 
-// // POST a new trainline
+// // POST a new trainline // not used but kept for easy creation of new trainlines
 // const postNewTrainline = async (req, res) => {
 //   try {
 //     const { lineName, stations, theme } = req.body;

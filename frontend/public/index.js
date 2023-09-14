@@ -55,6 +55,14 @@ navButtons.forEach((navButton) => {
 // fetch all custom stations from the database
 const fetchCustomStations = async () => {
   try {
+    newListHeading.classList.add('initial-data-fetch');
+    console.log(newListHeading.classList)
+    newListHeading.textContent = ''; // initial message while backend server is spinning up
+    setTimeout(() => {
+      if (newListHeading.classList.contains('initial-data-fetch')) {
+        newListHeading.textContent = 'Please be patient while the backend server spins up. After periods of inactivity, it may take up to a minute to spin up. This page will refresh automatically when the server is ready.';
+      }
+    }, 1500);
     const res = await fetch(`${baseUrl}/lines`);
     const data = await res.json();
     console.log('data is', data);
@@ -71,6 +79,8 @@ const fetchCustomStations = async () => {
         }
       });
     }
+    newListHeading.classList.remove('initial-data-fetch');
+    newListHeading.textContent = 'Train replacement not currently in service for this line';
     console.log('customStationsArrays is', customStationsArrays);
     console.log('customStationThemes is', customStationThemes);
   } catch (error) {
