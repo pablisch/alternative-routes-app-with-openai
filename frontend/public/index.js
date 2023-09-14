@@ -21,6 +21,8 @@ console.log('baseUrl is', baseUrl);
 const radioButtons = document.querySelectorAll('input[type=radio]');
 // get the form
 const trackForm = document.querySelector('.track-form');
+// get the user theme input
+const userThemeInput = document.querySelector('#user-theme');
 // get the div that will display the original station list
 const originalListDiv = document.querySelector('.original-stations-list');
 // get the div that will display the replacement station list
@@ -166,6 +168,9 @@ const renderNewList = (fullLineTitle, stations) => {
     // set the text content of the span element to the userTheme
     span.textContent = ` (${trackForm.userTheme.value})`;
   }
+
+  // reset userTheme input
+  trackForm.userTheme.value = '';
 };
 
 // add event listeners to the radio buttons
@@ -253,6 +258,7 @@ trackForm.addEventListener('submit', async (e) => {
   emptyNewListDiv();
   newListHeading.classList.add('loading');
   newListHeading.textContent = 'Generating Custom Names...';
+
 
   const res = await fetch(`${baseUrl}/openai/tracks/`, {
     method: 'POST',

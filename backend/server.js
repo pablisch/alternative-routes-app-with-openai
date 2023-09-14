@@ -1,5 +1,5 @@
 const express = require('express')
-const generateStationNames = require('./controllers/openaiController') // I don't understand why this id needed but the server crashes without it
+// const generateStationNames = require('./controllers/openaiController')
 const PORT = process.env.PORT || 4000
 const cors = require('cors')
 const mongoose = require('mongoose')

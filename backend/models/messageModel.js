@@ -16,7 +16,7 @@ const messageSchema = new Schema({
     required: true,
     // maxlength: 500
   },
-  subcribe: {
+  subscribe: {
     type: Boolean,
     required: true
   }
