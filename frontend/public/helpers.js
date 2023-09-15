@@ -1,3 +1,5 @@
+import { allLinesArrays } from './stations.js';
+
 const originalListDiv = document.querySelector('.original-stations-list');
 // get the div that will display the replacement station list
 const newListDiv = document.querySelector('.new-stations-list');
@@ -7,6 +9,9 @@ const originalListHeading = document.querySelector(
 );
 // get the h2 that will head the replacement station list
 const newListHeading = document.querySelector('.new-stations-panel h3');
+
+let fullLineTitle = 'No line selected';
+let stations = [];
 
 const newListClasses = ["not-in-service", "loading", "rate-limit", "initial-data-fetch", "error"]
 
@@ -45,4 +50,63 @@ export const emptyNewListDiv = () => {
       newListDiv.removeChild(newListDiv.firstChild);
     }
   }
+};
+
+export const getLineTitleAndStationsList = (selectedTubeLine) => {
+  switch (selectedTubeLine) {
+    case 'bakerloo':
+      fullLineTitle = 'Bakerloo Line';
+      stations = allLinesArrays.bakerloo;
+      break;
+    case 'central':
+      fullLineTitle = 'Central Line';
+      stations = allLinesArrays.central;
+      break;
+    case 'circle':
+      fullLineTitle = 'Circle Line';
+      stations = allLinesArrays.circle;
+      break;
+    case 'district':
+      fullLineTitle = 'District Line';
+      stations = allLinesArrays.district;
+      break;
+    case 'hammersmithCity':
+      fullLineTitle = 'Hammersmith & City Line';
+      stations = allLinesArrays.hammersmithCity;
+      break;
+    case 'jubilee':
+      fullLineTitle = 'Jubilee Line';
+      stations = allLinesArrays.jubilee;
+      break;
+    case 'metropolitan':
+      fullLineTitle = 'Metropolitan Line';
+      stations = allLinesArrays.metropolitan;
+      break;
+    case 'northern':
+      fullLineTitle = 'Northern Line';
+      stations = allLinesArrays.northern;
+      break;
+    case 'piccadilly':
+      fullLineTitle = 'Piccadilly Line';
+      stations = allLinesArrays.piccadilly;
+      break;
+    case 'victoria':
+      fullLineTitle = 'Victoria Line';
+      stations = allLinesArrays.victoria;
+      break;
+    case 'waterlooCity':
+      fullLineTitle = 'Waterloo & City Line';
+      stations = allLinesArrays.waterlooCity;
+      break;
+    case 'none':
+      fullLineTitle = 'No line selected';
+      stations = [];
+      break;
+    default:
+      fullLineTitle = 'No line selected';
+      stations = [];
+  }
+  console.log('fullLineTitle is', fullLineTitle);
+  console.log('stations are', stations);
+  return { fullLineTitle, stations }; 
 };

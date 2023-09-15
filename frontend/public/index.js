@@ -12,6 +12,7 @@ import {
   removeNewClasses,
   AddOriginalNotInServiceClass,
   AddNewNotInServiceClass,
+  getLineTitleAndStationsList,
 } from './helpers.js';
 import { bannedWords } from './bannedWords.js';
 
@@ -191,59 +192,10 @@ radioButtons.forEach((radioButton) => {
     // enable the submit button
     selectedTubeLine = radioButton.value;
     console.log('selected station value:', selectedTubeLine);
-    switch (selectedTubeLine) {
-      case 'bakerloo':
-        fullLineTitle = 'Bakerloo Line';
-        stations = allLinesArrays.bakerloo;
-        break;
-      case 'central':
-        fullLineTitle = 'Central Line';
-        stations = allLinesArrays.central;
-        break;
-      case 'circle':
-        fullLineTitle = 'Circle Line';
-        stations = allLinesArrays.circle;
-        break;
-      case 'district':
-        fullLineTitle = 'District Line';
-        stations = allLinesArrays.district;
-        break;
-      case 'hammersmithCity':
-        fullLineTitle = 'Hammersmith & City Line';
-        stations = allLinesArrays.hammersmithCity;
-        break;
-      case 'jubilee':
-        fullLineTitle = 'Jubilee Line';
-        stations = allLinesArrays.jubilee;
-        break;
-      case 'metropolitan':
-        fullLineTitle = 'Metropolitan Line';
-        stations = allLinesArrays.metropolitan;
-        break;
-      case 'northern':
-        fullLineTitle = 'Northern Line';
-        stations = allLinesArrays.northern;
-        break;
-      case 'piccadilly':
-        fullLineTitle = 'Piccadilly Line';
-        stations = allLinesArrays.piccadilly;
-        break;
-      case 'victoria':
-        fullLineTitle = 'Victoria Line';
-        stations = allLinesArrays.victoria;
-        break;
-      case 'waterlooCity':
-        fullLineTitle = 'Waterloo & City Line';
-        stations = allLinesArrays.waterlooCity;
-        break;
-      case 'none':
-        fullLineTitle = 'No line selected';
-        stations = [];
-        break;
-      default:
-        fullLineTitle = 'No line selected';
-        stations = [];
-    }
+    // getLineTitleAndStationsList(selectedTubeLine);
+    const { fullLineTitle, stations } = getLineTitleAndStationsList(selectedTubeLine);
+    console.log('fullLineTitle is', fullLineTitle);
+    console.log('stations are', stations);
     renderOriginalList(fullLineTitle, stations);
   });
 });
