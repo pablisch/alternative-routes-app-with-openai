@@ -18,8 +18,13 @@ const newListClasses = ["not-in-service", "loading", "rate-limit", "initial-data
 export const removeOriginalClasses = () =>
   originalListHeading.classList.remove('not-in-service');
 
+// export const removeNewClasses = () => {
+//   newListHeading.classList = [];
+// };
+
 export const removeNewClasses = () => {
   newListClasses.forEach((className) => {
+    console.log('removing', className)
     newListHeading.classList.remove(className)
   })
 };

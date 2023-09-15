@@ -18,23 +18,14 @@ import { bannedWords } from './bannedWords.js';
 
 console.log('baseUrl is', baseUrl);
 
-// get the radio buttons
 const radioButtons = document.querySelectorAll('input[type=radio]');
-// get the form
 const trackForm = document.querySelector('.track-form');
-// get the user theme input
 const userThemeInput = document.querySelector('#user-theme');
-// get the div that will display the original station list
 const originalListDiv = document.querySelector('.original-stations-list');
-// get the div that will display the replacement station list
 const newListDiv = document.querySelector('.new-stations-list');
-// get the h2 that will head the original station list
-const originalListHeading = document.querySelector(
-  '.original-stations-panel h3'
-);
-// get the h2 that will head the replacement station list
+const originalListHeading = document.querySelector('.original-stations-panel h3');
 const newListHeading = document.querySelector('.new-stations-panel h3');
-// set the initial selected radio button value to null
+
 let selectedTubeLine = null;
 let currentTheme = '';
 let fullLineTitle = 'No line selected';
@@ -43,7 +34,7 @@ let generatedStationNamesArray = [];
 let containsBannedWord = false;
 let themeWord;
 
-// Hide and show nav buttons
+// dynamically format nav buttons
 const navButtons = document.querySelectorAll('.nav-links li a');
 navButtons.forEach((navButton) => {
   if (navButton.innerHTML === 'Home') {
@@ -53,11 +44,10 @@ navButtons.forEach((navButton) => {
   }
 });
 
-// fetch all custom stations from the database
+// fetch all custom stations from the database - ONLY WHEN PAGE LOADS
 const fetchCustomStations = async () => {
   try {
     newListHeading.classList.add('initial-data-fetch');
-    console.log(newListHeading.classList);
     newListHeading.textContent = ''; // initial message while backend server is spinning up
     setTimeout(() => {
       if (newListHeading.classList.contains('initial-data-fetch')) {
@@ -192,8 +182,14 @@ radioButtons.forEach((radioButton) => {
     // enable the submit button
     selectedTubeLine = radioButton.value;
     console.log('selected station value:', selectedTubeLine);
-    // getLineTitleAndStationsList(selectedTubeLine);
-    const { fullLineTitle, stations } = getLineTitleAndStationsList(selectedTubeLine);
+
+    // Capture the values returned from the function
+    const { fullLineTitle: newFullLineTitle, stations: newStations } = getLineTitleAndStationsList(selectedTubeLine);
+
+    // Update the global variables
+    fullLineTitle = newFullLineTitle;
+    stations = newStations;
+    
     console.log('fullLineTitle is', fullLineTitle);
     console.log('stations are', stations);
     renderOriginalList(fullLineTitle, stations);
