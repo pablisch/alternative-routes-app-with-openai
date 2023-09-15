@@ -180,7 +180,17 @@ form label {
   opacity: 0.6;
   font-size: 1.2rem;
   font-family: 'Poppins';
-  /* transition: opacity 5s; */
+}
+
+.main-section .rate-limit {
+  color: #fe683b;
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 20px 30px;
+  margin-top: 100px;
+  opacity: 0.6;
+  font-size: 1.2rem;
+  font-family: 'Poppins';
 }
 
 .list p {

@@ -8,12 +8,20 @@ const originalListHeading = document.querySelector(
 // get the h2 that will head the replacement station list
 const newListHeading = document.querySelector('.new-stations-panel h3');
 
+const newListClasses = ["not-in-service", "loading", "rate-limit", "initial-data-fetch", "error"]
+
 export const removeOriginalClasses = () =>
   originalListHeading.classList.remove('not-in-service');
 
 export const removeNewClasses = () => {
-  newListHeading.classList.remove('not-in-service');
-  newListHeading.classList.remove('loading');
+  newListClasses.forEach((className) => {
+    newListHeading.classList.remove(className)
+  })
+};
+
+export const AddNewListClass = (className) => {
+  newListHeading.classList = [];
+  newListHeading.classList.add(className);
 };
 
 export const AddOriginalNotInServiceClass = () =>

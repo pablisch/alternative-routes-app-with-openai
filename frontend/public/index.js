@@ -1,4 +1,4 @@
-import { baseUrl } from './baseUrl.js'
+import { baseUrl } from './baseUrl.js';
 
 import {
   allLinesArrays,
@@ -34,7 +34,7 @@ const originalListHeading = document.querySelector(
 // get the h2 that will head the replacement station list
 const newListHeading = document.querySelector('.new-stations-panel h3');
 // set the initial selected radio button value to null
-let selectedValue = null;
+let selectedTubeLine = null;
 let currentTheme = '';
 let fullLineTitle = 'No line selected';
 let stations = [];
@@ -45,7 +45,7 @@ let themeWord;
 // Hide and show nav buttons
 const navButtons = document.querySelectorAll('.nav-links li a');
 navButtons.forEach((navButton) => {
-  if (navButton.innerHTML === "Home") {
+  if (navButton.innerHTML === 'Home') {
     navButton.classList.add('inactive');
   } else {
     navButton.classList.remove('inactive');
@@ -56,11 +56,12 @@ navButtons.forEach((navButton) => {
 const fetchCustomStations = async () => {
   try {
     newListHeading.classList.add('initial-data-fetch');
-    console.log(newListHeading.classList)
+    console.log(newListHeading.classList);
     newListHeading.textContent = ''; // initial message while backend server is spinning up
     setTimeout(() => {
       if (newListHeading.classList.contains('initial-data-fetch')) {
-        newListHeading.textContent = 'Please be patient while the backend server spins up. After periods of inactivity, it may take up to a minute to spin up. This page will refresh automatically when the server is ready.';
+        newListHeading.textContent =
+          'Please be patient while the backend server spins up. After periods of inactivity, it may take up to a minute to spin up. This page will refresh automatically when the server is ready.';
       }
     }, 1500);
     const res = await fetch(`${baseUrl}/lines`);
@@ -80,7 +81,8 @@ const fetchCustomStations = async () => {
       });
     }
     newListHeading.classList.remove('initial-data-fetch');
-    newListHeading.textContent = 'Train replacement not currently in service for this line';
+    newListHeading.textContent =
+      'Train replacement not currently in service for this line';
     console.log('customStationsArrays is', customStationsArrays);
     console.log('customStationThemes is', customStationThemes);
   } catch (error) {
@@ -136,10 +138,10 @@ const renderOriginalList = (fullLineTitle, stations) => {
 
     emptyNewListDiv();
 
-    if (customStationsArrays[`${selectedValue}Custom`].length > 0) {
+    if (customStationsArrays[`${selectedTubeLine}Custom`].length > 0) {
       removeNewClasses();
       newListHeading.textContent = `${fullLineTitle} custom station names`;
-      customStationsArrays[`${selectedValue}Custom`].forEach((station) => {
+      customStationsArrays[`${selectedTubeLine}Custom`].forEach((station) => {
         const p = document.createElement('p');
         p.textContent = station;
         newListDiv.appendChild(p);
@@ -170,11 +172,11 @@ const renderNewList = (fullLineTitle, stations) => {
       newListDiv.appendChild(p);
     });
 
-    customStationsArrays[`${selectedValue}Custom`] = stations;
+    customStationsArrays[`${selectedTubeLine}Custom`] = stations;
     console.log('customStationsArrays is', customStationsArrays);
 
     // get span element in the selected line's label
-    const span = document.querySelector(`label[for=${selectedValue}] span`);
+    const span = document.querySelector(`label[for=${selectedTubeLine}] span`);
     // set the text content of the span element to the userTheme
     span.textContent = ` (${trackForm.userTheme.value})`;
   }
@@ -187,9 +189,9 @@ const renderNewList = (fullLineTitle, stations) => {
 radioButtons.forEach((radioButton) => {
   radioButton.addEventListener('change', () => {
     // enable the submit button
-    selectedValue = radioButton.value;
-    console.log('selected station value:', selectedValue);
-    switch (selectedValue) {
+    selectedTubeLine = radioButton.value;
+    console.log('selected station value:', selectedTubeLine);
+    switch (selectedTubeLine) {
       case 'bakerloo':
         fullLineTitle = 'Bakerloo Line';
         stations = allLinesArrays.bakerloo;
@@ -251,6 +253,12 @@ trackForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   currentTheme = trackForm.userTheme.value;
 
+  if (selectedTubeLine === null || selectedTubeLine === 'none') {
+    AddNewNotInServiceClass();
+    newListHeading.textContent = 'Please select a line to generate names for';
+    return;
+  }
+
   if (containsBanndedWords(currentTheme)) {
     AddNewNotInServiceClass();
     emptyNewListDiv();
@@ -269,7 +277,6 @@ trackForm.addEventListener('submit', async (e) => {
   newListHeading.classList.add('loading');
   newListHeading.textContent = 'Generating Custom Names...';
 
-
   const res = await fetch(`${baseUrl}/openai/tracks/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -283,6 +290,17 @@ trackForm.addEventListener('submit', async (e) => {
   console.log('data is', data);
   // write data to local storage
   localStorage.setItem('generatedStationNames', data.generatedStationNames);
+
+  if (
+    data.error &&
+    data.error ===
+      'Too many or too frequent requests from your device, please try again later'
+  ) {
+    newListHeading.classList.add('rate-limit');
+    newListHeading.textContent =
+      'Too many or too frequent requests from your device, please try again later';
+    return;
+  }
 
   if (data.generatedStationNames === 'NA') {
     AddNewNotInServiceClass();
@@ -316,13 +334,22 @@ trackForm.addEventListener('submit', async (e) => {
     return;
   }
 
-  console.log('selectedValue is', selectedValue, 'currentTheme is', currentTheme);
+  console.log(
+    'selectedTubeLine is',
+    selectedTubeLine,
+    'currentTheme is',
+    currentTheme
+  );
 
   while (generatedStationNamesArray.length > stations.length) {
     console.log('number of results is', generatedStationNamesArray.length);
     generatedStationNamesArray.pop();
   }
 
-  writeNewStationsToDatabase(selectedValue, generatedStationNamesArray, currentTheme);
+  writeNewStationsToDatabase(
+    selectedTubeLine,
+    generatedStationNamesArray,
+    currentTheme
+  );
   renderNewList(fullLineTitle, generatedStationNamesArray);
 });
