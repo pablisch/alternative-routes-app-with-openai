@@ -16,8 +16,15 @@ npm install
 ```
 Create a `.env` file in the root directory and add your OpenAI API key and a port number of your choosing:
 ```bash
-OPENAI_API_KEY=your-api-key-here
-PORT=4000 or whatever port you want
+PORT=4000
+OPENAI_API_KEY=<you-openai-api-key>
+MONGO_USER_PW=<db-password>
+MONGO_USER_NAME=<db-username>
+MONGO_DB_NAME=alternative-routes
+SMTP_USERNAME=alternative.routes.app@gmail.com
+SMTP_PASSWORD=<smtp-password>
+EMAIL_SERVICE=Gmail
+EMAIL_TO=<recipient-email>
 ```
 Run the app in development mode:
 ```bash
