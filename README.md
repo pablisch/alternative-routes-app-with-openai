@@ -65,4 +65,4 @@ v3. This third iteration has moved the frontend and backend into separate folder
 
 v4. The fourth iteration has introduced a database using MongoDB and Mongoose. The database is used to store the generated names and themes and the station names for each line. The frontend and backend servers have been updated to use the database and the frontend has been updated to display the station names from the database.
 
-This iteration also introduces additional ppages for 'about' and 'contact'.
+This iteration also introduces additional pages for 'about' and 'contact'.

@@ -26,11 +26,15 @@ body {
 .view-width {
   max-width: 1100px;
   margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .view-width-plus {
   max-width: 1120px;
   margin: 0 auto;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .flex-container {
@@ -440,4 +444,77 @@ body {
 
 .hidden {
   display: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 950px) {
+  .main-section h2 {
+    font-size: 1.2rem;
+  }
+  .original-stations-panel {
+    display: none;
+  }
+}
+
+@media (max-width: 750px) {
+  .main-section h2 {
+    font-size: 1.05rem;
+  }
+  .nav-brand h1 {
+    font-size: 2rem;
+  }
+  .nav-items ul li a {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 680px) {
+  form label {
+    font-size: 1.1rem;
+  }
+  form label span {
+    font-size: 1rem;
+  }
+  .main-section h3 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 670px) {
+  .nav-brand h1 {
+    font-size: 1.8rem;
+  }
+  .nav-items ul li a {
+    font-size: 1rem;
+    padding: 0 0 0 15px;
+  }
+}
+
+@media (max-width: 630px) {
+  form label {
+    font-size: 0.9rem;
+  }
+  form label span {
+    font-size: 0.8rem;
+  }
+  .main-section h3 {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .nav-brand h1 {
+    font-size: 1.6rem;
+  }
+  .nav-items ul li a {
+    font-size: 0.9rem;
+    padding: 0 0 0 10px;
+  }
+}
+
+@media (max-width: 540px) {
+  #routes {
+    display: none;
+  }
 }
