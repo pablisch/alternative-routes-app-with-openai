@@ -181,6 +181,21 @@ radioButtons.forEach((radioButton) => {
   radioButton.addEventListener('change', () => {
     // enable the submit button
     selectedTubeLine = radioButton.value;
+    if (selectedTubeLine === 'none') {
+      fullLineTitle = 'No line selected';
+      stations = [];
+      console.log('selectedTubeLine is', selectedTubeLine);
+      AddOriginalNotInServiceClass();
+      AddNewNotInServiceClass();
+      generatedStationNamesArray = [];
+      while (newListDiv.firstChild) {
+        newListDiv.removeChild(newListDiv.firstChild);
+      }
+      newListHeading.textContent =
+        'Train replacement not currently in service for this line';
+      renderOriginalList(fullLineTitle, stations);
+      return;
+    }
     console.log('selected station value:', selectedTubeLine);
 
     // Capture the values returned from the function
